@@ -1,7 +1,19 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'ixoye63'
+    groupId = 'com.tongtong.tonglib'
+    artifactId = 'tonglib'
+    publishVersion = '0.1.0'
+    desc = 'tong library.'
+    website = 'https://github.com/ixoye63/tonglib'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
+}
 
 android {
-    buildToolsVersion "24.0.0"
+    buildToolsVersion "24.0"
     compileSdkVersion 24
 
     defaultConfig {
