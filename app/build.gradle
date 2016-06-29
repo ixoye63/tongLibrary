@@ -28,6 +28,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // compileOptions.encoding = 'UTF-8'
 }
 
 dependencies {
@@ -36,4 +38,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.google.code.gson:gson:2.4'
+    compile 'com.android.support:design:24.0.0'
 }
