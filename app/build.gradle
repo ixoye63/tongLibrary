@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
-apply plugin: 'com.github.dcendents.android-maven'
 
 
 android {
@@ -32,65 +31,12 @@ dependencies {
     compile 'com.android.support:design:23.0.0'
 }
 
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            name 'tong library'
-            description 'tong library...'
-            url 'https://github.com/ixoye63/tonglib'
-            inceptionYear '2016'
-
-            // packaging 'aar'
-            groupId 'com.tongtong.tonglib'
-            artifactId 'tonglib'
-            version '0.1.0'
-
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-            scm {
-                connection 'https://github.com/ixoye63/tonglib.git'
-                url 'https://github.com/ixoye63/tonglib'
-
-            }
-            developers {
-                developer {
-                    name 'tongtong'
-                }
-            }
-        }
-    }
-}
-
-bintray {
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-    // configurations = ['archives']
-    pkg {
-        repo = 'maven'
-        name = 'tonglib'
-        userOrg = 'ixoye63'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/ixoye63/tonglib.git'
-        version {
-            name = '0.1.0'
-            desc = 'tong library'
-            vcsTag = '0.1.0'
-            attributes = ['gradle-plugin': 'com.tongtong.tonglib:com.tongtong.tonglib.gradle:gradle-tonglib-plugin']
-        }
-    }
-}
-
 publish {
     userOrg = 'ixoye63'
     groupId = 'com.tongtong.tonglib'
     artifactId = 'tonglib'
     publishVersion = '0.1.0'
-    desc = 'tong library...'
+    desc = 'tongtong library...'
     website = 'https://github.com/ixoye63/tonglib'
     issueTracker = "${website}/issues"
     repository = "${website}.git"

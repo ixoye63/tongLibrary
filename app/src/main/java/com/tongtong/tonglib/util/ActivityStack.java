@@ -48,4 +48,6 @@ public class ActivityStack
 	{
 		this.stack.remove(pActivity);
 	}
+
 }
+
