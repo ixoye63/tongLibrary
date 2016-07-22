@@ -1,6 +1,4 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
-
+apply plugin: 'com.android.application'
 
 android {
     buildToolsVersion "23.0.3"
@@ -18,30 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    // compileOptions.encoding = 'UTF-8'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.android.support:design:23.0.0'
-}
-
-publish {
-    userOrg = 'ixoye63'
-    groupId = 'com.tongtong.tonglib'
-    artifactId = 'tonglib'
-    publishVersion = '0.1.0'
-    desc = 'tongtong library...'
-    website = 'https://github.com/ixoye63/tonglib'
-    issueTracker = "${website}/issues"
-    repository = "${website}.git"
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
 }

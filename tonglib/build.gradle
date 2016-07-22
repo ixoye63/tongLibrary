@@ -1,8 +1,17 @@
+// 실행순서
+// 1) gradlew install             // Android Library를 빌드하고 aar, pom과 같은 파일을 생성하는 단계
+// 2) gradlew bintrayUpload       // bintray configurations을 참조하여 Repository에 업로드하는 과정
+
 apply plugin: 'com.android.library'
 
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+version = "0.0.1"
+
 android {
+    buildToolsVersion "23.0.3"
     compileSdkVersion 23
-    buildToolsVersion "24.0.0"
 
     defaultConfig {
         minSdkVersion 15
@@ -16,10 +25,98 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // compileOptions.encoding = 'UTF-8'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.google.code.gson:gson:2.4'
+
+}
+
+def siteUrl = 'https://github.com/ixoye63/tongLibrary'         // #CONFIG# // project homepage
+def gitUrl = 'https://github.com/ixoye63/tongLibrary.git'      // #CONFIG# // project git url
+def issueUrl = 'https://github.com/ixoye63/tongLibrary/issues' // #CONFIG# // project issue url
+group = "com.tongtong"
+
+//generate javadoc and jar
+
+install {
+    repositories.mavenInstaller {
+        // generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                name 'com.tongtong'                             // #CONFIG# // project title
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'ixoye63'                             // #CONFIG# // your user id (you can write your nickname)
+                        name 'ixoye63'                           // #CONFIG# // your user name
+                        email 'ixoye63@naver.com'                // #CONFIG# // your email
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+
+//bintray upload
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apiKey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "tong-library"                                                   // #CONFIG# project name in jcenter
+        desc = 'tongtong devel library.'
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        issueTrackerUrl = issueUrl
+        licenses = ["Apache-2.0"]
+        labels = ['android', 'library']
+        publish = true
+        publicDownloadNumbers = true
+    }
 }

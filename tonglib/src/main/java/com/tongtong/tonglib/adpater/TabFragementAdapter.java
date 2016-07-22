@@ -8,12 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import com.tongtong.tonglib.ui.TabView;
 import com.tongtong.tonglib.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.tongtong.tonglib.ui.TabView;
 
 /**
  * Created by HJKO on 2015-10-02.
@@ -25,7 +24,7 @@ public class TabFragementAdapter extends FragmentPagerAdapter {
 
     private final List<TabItem> mTabItemList = new ArrayList<>();
 
-    public TabFragementAdapter(final Context context, FragmentManager manager, TabLayout tabLayout,  ViewPager viewPager) {
+    public TabFragementAdapter(final Context context, FragmentManager manager, TabLayout tabLayout, ViewPager viewPager) {
         super(manager);
         mContext = context;
         mTabLayout = tabLayout;

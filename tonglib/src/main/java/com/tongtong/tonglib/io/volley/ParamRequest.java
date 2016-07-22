@@ -1,14 +1,11 @@
 package com.tongtong.tonglib.io.volley;
 
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ParamRequest extends StringRequest 
@@ -19,7 +16,7 @@ public class ParamRequest extends StringRequest
 		super(method, url, listener, errorListener);
 	}
 
-	public ParamRequest(String url, Listener<String> listener,	ErrorListener errorListener) {
+	public ParamRequest(String url, Listener<String> listener, ErrorListener errorListener) {
 		this(Method.GET, url, listener, errorListener);
 	}
 	

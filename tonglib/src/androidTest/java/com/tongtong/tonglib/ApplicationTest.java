@@ -1,4 +1,4 @@
-package com.tongtong.tongtonglibrary;
+package com.tongtong.tonglib;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
