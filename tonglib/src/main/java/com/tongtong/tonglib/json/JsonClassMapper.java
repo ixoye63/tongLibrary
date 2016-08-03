@@ -192,6 +192,4 @@ public class JsonClassMapper
 		return arList;
         
 	}
-		
-
 }
